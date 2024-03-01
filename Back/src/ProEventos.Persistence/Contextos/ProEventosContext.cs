@@ -27,13 +27,6 @@ namespace ProEventos.Persistence.Contextos
                         .HasMany(e => e.RedesSociais)
                         .WithOne(rs => rs.Palestrante)
                         .OnDelete(DeleteBehavior.Cascade);
-
-            foreach (var property in modelBuilder.Model.GetEntityTypes()
-                        .SelectMany(t => t.GetProperties())
-                        .Where(p => p.ClrType == typeof(decimal) || p.ClrType == typeof(decimal?)))
-            {   
-              property.SetColumnType("decimal(18,2)");   
-            }
         }
     }
 }
